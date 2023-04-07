@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color:blueviolet ;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 40px 0;
+}
+
+a {
+    color: white;
+    font-weight: bold;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav > ul > li {
+    list-style-type: none;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+button {
+    margin: 8px;
+    padding: 10px;
+    border: 2px solid white;
+    background-color:blueviolet;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkviolet;
+}
+
+input {
+    margin: 8px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#quote-container {
+    padding: 10px;
+    width: 80%;
+}
