@@ -60,10 +60,15 @@ fetchAllQuotes.addEventListener('click', () => {
 fetchByAuthor.addEventListener('click', () => {
     const author = document.getElementById('author').value;
 
-    console.log(author);
-
     fetch(`http://localhost:8080/api/quotes?person=${author}`)
         .then(response => {
-            
+            if (response.ok) {
+                return response.json();
+            } else {
+                renderError(response);
+            }
+        })
+        .then(response => {
+            renderQuotes(response.quotes);
         });
 })

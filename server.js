@@ -16,7 +16,7 @@ app.get('/api/quotes/random', (req, res) => {
 });
 
 app.get('/api/quotes', (req, res) => {
-    if (req.query.person) {
+    if (req.query.person != undefined) {
         const quotesByAuthor = quotes.filter(quote => quote.person == req.query.person);
 
         res.send({ quotes: quotesByAuthor });
