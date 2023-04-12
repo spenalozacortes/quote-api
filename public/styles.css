@@ -67,3 +67,11 @@ input {
     padding: 10px;
     width: 80%;
 }
+
+.single-quote {
+    padding: 10px;
+}
+
+.quote-text {
+    font-style: italic;
+}
