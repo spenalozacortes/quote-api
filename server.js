@@ -25,6 +25,22 @@ app.get('/api/quotes', (req, res) => {
     }
 });
 
+app.post('/api/quotes', (req, res) => {
+    const newQuote = {
+        quote: req.query.quote,
+        person: req.query.person
+    };
+
+    if (newQuote.quote && newQuote.person) {
+        quotes.push(newQuote);
+        res.status(201).send({
+            quote: newQuote
+        });
+    } else {
+        res.status(400).send();
+    }
+});
+
 app.listen(PORT, () => {
     console.log("Server listening");
 });
