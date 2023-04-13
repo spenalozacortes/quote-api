@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color:blueviolet ;
+    background-color:blueviolet;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     width: 80%;
@@ -30,12 +30,12 @@ nav > ul > li {
     list-style-type: none;
 }
 
-/* div {
+.form {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
-} */
+} 
 
 button {
     margin: 8px;
@@ -45,6 +45,11 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
+}
+
+#submit-quote {
+    display: block;
+    margin: 0 auto;
 }
 
 button:hover {
@@ -57,15 +62,21 @@ input {
     font-size: 16px;
 }
 
+label {
+    padding: 10px;
+}
+
 .inputs {
     margin: 8px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 #quote-container {
     padding: 10px;
     width: 80%;
+    margin: 0 auto;
 }
 
 .single-quote {
