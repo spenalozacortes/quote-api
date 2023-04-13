@@ -5,7 +5,7 @@ const app = express();
 const { quotes } = require('./data');
 const { getRandomElement } = require('./utils');
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
 app.use(cors());
