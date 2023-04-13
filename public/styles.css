@@ -73,7 +73,7 @@ label {
     align-items: center;
 }
 
-#quote-container {
+#quote-container, #new-quote {
     padding: 10px;
     width: 80%;
     margin: 0 auto;
