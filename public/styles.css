@@ -47,7 +47,7 @@ button {
     cursor: pointer;
 }
 
-#submit-quote {
+#submit-quote, #delete-quote {
     display: block;
     margin: 0 auto;
 }

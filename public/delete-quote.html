@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Quote API</title>
         <link rel="stylesheet" href="styles.css">
-        <script src="script.js" defer></script>
+        <script src="delete-quote.js" defer></script>
     </head>
     <body>
         <h1>Quote API</h1>
@@ -16,18 +16,15 @@
                 <li><a href="delete-quote.html">Delete Quote</a></li>
             </ul>
         </nav>
-        <h2>Get Quotes</h2>
-        <div class="form">
-            <div id="request-buttons">
-                <button id="fetch-random">Fetch a Random Quote</button>
-                <button id="fetch-all">Fetch All Quotes</button>
-            </div>
-            <div>
-                <input id="author" value="">
-                <button id="fetch-by-author">Fetch by Author</button>
-            </div>
+        <h2>Delete Quote</h2>
+        <div class="inputs">
+            <label for="quote-id">Quote ID:</label>
+            <input id="quote-id" value="">
         </div>
-        <div id="quote-container">
+        <div>
+            <button id="delete-quote">Delete Quote</button>
+        </div>
+        <div id="quote-deleted">
 
         </div>
     </body>

@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 
 const { quotes } = require('./data');
-const { getRandomElement } = require('./utils');
+const { getRandomElement, getIndexById } = require('./utils');
 
 const PORT = process.env.PORT || 8080;
 
@@ -38,6 +38,17 @@ app.post('/api/quotes', (req, res) => {
         });
     } else {
         res.status(400).send();
+    }
+});
+
+app.delete('/api/quotes/:id', (req, res) => {
+    const index = getIndexById(req.params.id, quotes);
+
+    if (index !== -1) {
+        quotes.splice(index, 1);
+        res.status(204).send();
+    } else {
+        res.status(404).send();
     }
 });
 
