@@ -4,7 +4,6 @@ const message = document.createElement('div');
 
 deleteQuoteButton.addEventListener('click', () => {
     const id = document.getElementById('quote-id').value;
-    console.log(id);
 
 fetch(`http://localhost:8080/api/quotes/${id}`, {
         method: "delete"
@@ -13,7 +12,6 @@ fetch(`http://localhost:8080/api/quotes/${id}`, {
             if (response.ok) {
                 message.innerHTML = "<h3>The quote was deleted!</h3>";
                 deleteQuoteContainer.appendChild(message);
-
             } else {
                 message.innerHTML = "<h3>Failed to delete quote</h3>";
                 deleteQuoteContainer.appendChild(message);

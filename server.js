@@ -41,6 +41,22 @@ app.post('/api/quotes', (req, res) => {
     }
 });
 
+app.put('/api/quotes/:id', (req, res) => {
+    const index = getIndexById(req.params.id, quotes);
+    const updatedQuote = {
+        quote: req.query.quote,
+        person: req.query.person,
+        id: req.params.id
+    };
+
+    if (index !== -1) {
+        quotes[index] = updatedQuote;
+        res.send({ quote: updatedQuote });
+    } else {
+        res.status(404).send();
+    }
+});
+
 app.delete('/api/quotes/:id', (req, res) => {
     const index = getIndexById(req.params.id, quotes);
 
@@ -53,5 +69,5 @@ app.delete('/api/quotes/:id', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Server listening");
+    console.log(`Server listening on port ${PORT}`);
 });
