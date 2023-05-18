@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const app = express();
 
 const { quotes } = require('./data');
-const { getRandomElement, getIndexById } = require('./utils');
+const { getRandomElement, getIndexById, createQuote } = require('./utils');
 
 const PORT = process.env.PORT || 8080;
 
@@ -29,12 +29,9 @@ app.get('/api/quotes', (req, res) => {
 });
 
 app.post('/api/quotes', (req, res) => {
-    const newQuote = {
-        quote: req.query.quote,
-        person: req.query.person
-    };
+    const newQuote = createQuote(req.query);
 
-    if (newQuote.quote && newQuote.person) {
+    if (newQuote.quote && newQuote.person) {        
         quotes.push(newQuote);
         res.status(201).send({
             quote: newQuote
