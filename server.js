@@ -13,6 +13,17 @@ app.use(express.static('public'));
 app.use(cors());
 app.use(morgan('dev'));
 
+app.use('/api/quotes/:id', (req, res, next) => {
+    const index = getIndexById(req.params.id, quotes);
+
+    if (index === -1) {
+        return res.status(404).send();
+    }
+
+    req.index = index;
+    next();
+});
+
 app.get('/api/quotes/random', (req, res) => {
     const randomQuote = getRandomElement(quotes);
     res.send({ quote: randomQuote });
@@ -42,30 +53,19 @@ app.post('/api/quotes', (req, res) => {
 });
 
 app.put('/api/quotes/:id', (req, res) => {
-    const index = getIndexById(req.params.id, quotes);
     const updatedQuote = {
         quote: req.query.quote,
         person: req.query.person,
         id: req.params.id
     };
 
-    if (index !== -1) {
-        quotes[index] = updatedQuote;
-        res.send({ quote: updatedQuote });
-    } else {
-        res.status(404).send();
-    }
+    quotes[req.index] = updatedQuote;
+    res.send({ quote: updatedQuote });
 });
 
 app.delete('/api/quotes/:id', (req, res) => {
-    const index = getIndexById(req.params.id, quotes);
-
-    if (index !== -1) {
-        quotes.splice(index, 1);
-        res.status(204).send();
-    } else {
-        res.status(404).send();
-    }
+    quotes.splice(req.index, 1);
+    res.status(204).send();
 });
 
 app.listen(PORT, () => {
