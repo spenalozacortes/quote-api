@@ -13,13 +13,19 @@ app.use(express.static('public'));
 app.use(cors());
 app.use(morgan('dev'));
 
+const validateQuote = (req, res, next) => {
+    if (!req.query.quote || !req.query.person) {
+        return res.status(400).send("Invalid quote!");
+    }
+    next();
+};
+
 app.use('/api/quotes/:id', (req, res, next) => {
     const index = getIndexById(req.params.id, quotes);
 
     if (index === -1) {
-        return res.status(404).send();
+        return res.status(404).send("ID not found!");
     }
-
     req.index = index;
     next();
 });
@@ -39,20 +45,14 @@ app.get('/api/quotes', (req, res) => {
     }
 });
 
-app.post('/api/quotes', (req, res) => {
+app.post('/api/quotes', validateQuote, (req, res) => {
     const newQuote = createQuote(req.query);
 
-    if (newQuote.quote && newQuote.person) {        
-        quotes.push(newQuote);
-        res.status(201).send({
-            quote: newQuote
-        });
-    } else {
-        res.status(400).send();
-    }
+    quotes.push(newQuote);
+    res.status(201).send({ quote: newQuote });
 });
 
-app.put('/api/quotes/:id', (req, res) => {
+app.put('/api/quotes/:id', validateQuote, (req, res) => {
     const updatedQuote = {
         quote: req.query.quote,
         person: req.query.person,
