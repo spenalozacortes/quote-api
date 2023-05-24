@@ -19,15 +19,20 @@ app.param('id', (req, res, next, id) => {
         req.index = index;
         next();
     } else {
-        res.status(404).send("ID not found!");
+        const err = new Error("ID not found!");
+        err.status = 404;
+        next(err);
     }
 });
 
 const validateQuote = (req, res, next) => {
     if (!req.query.quote || !req.query.person) {
-        return res.status(400).send("Invalid quote!");
+        const err = new Error("Invalid quote!");
+        err.status = 400;
+        next(err);
+    } else {
+        next();
     }
-    next();
 };
 
 app.get('/api/quotes/random', (req, res, next) => {
@@ -63,6 +68,11 @@ app.put('/api/quotes/:id', validateQuote, (req, res, next) => {
 app.delete('/api/quotes/:id', (req, res, next) => {
     quotes.splice(req.index, 1);
     res.status(204).send();
+});
+
+app.use((err, req, res, next) => {
+    const status = err.status || 500;
+    res.status(status).send(err.message);
 });
 
 app.listen(PORT, () => {
